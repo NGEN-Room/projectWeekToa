@@ -24,4 +24,6 @@ things to know:
 
 then run "npm run dev" in your terminal
 
+if this doesnt work you need to run "npm install" first to initialise or the installs
+
 then visit /*nameOfFolder*
