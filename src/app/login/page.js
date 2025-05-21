@@ -7,8 +7,8 @@ export default function Login() {
           <div className="w-32 h-32 border-2 border-black rounded-full mb-4"></div>
 
           {/* App Name and Login */}
-          <h1 className="text-2xl font-bold">App Name</h1>
-          <p className="text-lg mb-6">Login</p>
+          <h1 className="text-2xl font-bold text-black">App Name</h1>
+          <p className="text-lg mb-6 text-black">Login</p>
 
           {/* Login form */}
           <form className="w-full">
