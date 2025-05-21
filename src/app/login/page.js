@@ -1,9 +1,15 @@
 export default function Login() {
   return (
+    // Full screen background
     <div className="flex items-center justify-center min-h-screen bg-gray-50">
-      <div className="w-full max-w-sm p-6">
+
+    {/* Card for the content */}
+      <div className="w-full max-w-sm p-6 ">
+
+    {/* inside card content */}
         <div className="flex flex-col items-center">
-          {/* Profile circle */}
+
+          {/* Profile circle  */}
           <div className="w-32 h-32 border-2 border-black rounded-full mb-4"></div>
 
           {/* App Name and Login */}
@@ -16,14 +22,14 @@ export default function Login() {
               type="email"
               name="email"
               placeholder="Email"
-              className="w-full px-3 py-2 mb-2 border border-gray-300 focus:outline-none"
+              className="w-full px-3 py-2 mb-2 border border-gray-300 focus:outline-none text-[#A9A9A9]"
               required
             />
             <input
               type="password"
               name="password"
               placeholder="Password"
-              className="w-full px-3 py-2 mb-1 border border-gray-300 focus:outline-none"
+              className="w-full px-3 py-2 mb-1 border border-gray-300 focus:outline-none text-[#A9A9A9]"
               required
             />
 
@@ -49,12 +55,12 @@ export default function Login() {
             type="button"
             className="w-full flex justify-center items-center gap-2 border border-gray-300 py-2 hover:bg-gray-100"
           >
-            <img src="/instagram-icon.png" alt="Instagram Icon" className="w-4 h-4" />
+            <img src="/instagram.png" alt="Instagram Icon" className="w-4 text-[#A9A9A9] h-4" />
             Continue with Instagram
           </button>
 
           {/* Sign up link */}
-          <div className="mt-6 text-sm">
+          <div className="mt-6 text-[#A9A9A9] text-sm">
             <span>Don't have an account? </span>
             <a href="#" className="text-sky-400 hover:underline">Sign Up</a>
           </div>
