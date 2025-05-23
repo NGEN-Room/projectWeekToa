@@ -8,37 +8,39 @@ export default function SignUpModal() {
   const [showModal, setShowModal] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [username, setUsername] = useState('')
-  const [goal, setGoal] = useState('')
   const [error, setError] = useState(null)
   const router = useRouter()
 
-  const handleSignup = async (e) => {
-    e.preventDefault()
+const handleSignup = async (e) => {
+  e.preventDefault()
 
-    if (!email || !password || !username || !goal) {
-      setError('Please fill in all fields')
-      return
-    }
-
-    const { data, error: signUpError } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        data: {
-          username,
-          goal,
-        },
-      },
-    })
-
-    if (signUpError) {
-      setError(signUpError.message)
-    } else {
-      setShowModal(false)
-      router.push('/ftsup') // Or wherever onboarding starts
-    }
+  if (!email || !password) {
+    setError('Please fill in all fields')
+    return
   }
+
+  console.log('📨 Signing up with:', email)
+
+  const { data, error: signUpError } = await supabase.auth.signUp({
+    email,
+    password,
+  })
+
+  console.log('🧾 Supabase signUp result:', data, signUpError)
+
+  if (signUpError) {
+    setError(signUpError.message)
+    return
+  }
+
+  if (!data.user) {
+    setError("Signup failed: no user object returned.")
+    return
+  }
+
+  setShowModal(false)
+  router.push('/login')
+}
 
   return (
     <div>
@@ -66,13 +68,6 @@ export default function SignUpModal() {
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full border p-2 rounded"
-              />
-              <input
-                type="text"
-                placeholder="Username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
                 className="w-full border p-2 rounded"
               />
               <button className="bg-green-600 text-white w-full py-2 rounded">
