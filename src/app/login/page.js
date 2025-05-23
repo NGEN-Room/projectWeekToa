@@ -1,73 +1,82 @@
-import Sidebar from "@/components/leftnavbar";
-import Link from "next/link"
-export default function Login() {
+
+'use client'
+
+import { useState } from 'react'
+import supabase from '@/lib/supabaseClient'
+import { useRouter } from 'next/navigation'
+import SignUpModal from '@/components/SignUpModal'
+
+export default function LoginPage() {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState(null)
+  const router = useRouter()
+
+  const handleLogin = async (e) => {
+    e.preventDefault()
+    const { error } = await supabase.auth.signInWithPassword({ email, password })
+
+    if (error) setError(error.message)
+    else router.push('/ftsup')
+  }
+
   return (
-    // Full screen background
-    <div className="flex items-center justify-center min-h-screen bg-gray-50">
-    <div className=""></div>
-    {/* Card for the content */}
-      <div className="w-full max-w-sm p-6 ">
+    <div className="min-h-screen flex items-center justify-center bg-white px-4">
+      <div className="max-w-sm w-full space-y-6 text-center">
+        {/* Logo placeholder */}
+        <div className="w-24 h-24 mx-auto border border-black rounded-full" />
+        
+        {/* App Name & Subtitle */}
+        <h1 className="text-2xl font-bold">App Name</h1>
+        <p className="text-gray-500 text-sm">Login</p>
 
-    {/* inside card content */}
-        <div className="flex flex-col items-center">
-
-          {/* Profile circle  */}
-          <div className="w-32 h-32 border-2 border-black rounded-full mb-4"></div>
-
-          {/* App Name and Login */}
-          <h1 className="text-2xl font-bold text-black">App Name</h1>
-          <p className="text-lg mb-6 text-black">Login</p>
-
-          {/* Login form */}
-          <form className="w-full">
+        {/* Form */}
+        <form onSubmit={handleLogin} className="flex flex-col gap-3 text-left">
+          <input
+            className="border border-gray-300 p-2 w-full rounded"
+            type="email"
+            placeholder="Email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <div className="relative">
             <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              className="w-full px-3 py-2 mb-2 border border-gray-300 focus:outline-none text-[#A9A9A9]"
-              required
-            />
-            <input
+              className="border border-gray-300 p-2 w-full rounded"
               type="password"
-              name="password"
               placeholder="Password"
-              className="w-full px-3 py-2 mb-1 border border-gray-300 focus:outline-none text-[#A9A9A9]"
-              required
+              onChange={(e) => setPassword(e.target.value)}
             />
-
-            <div className="text-right mb-4">
-              <a href="#" className="text-xs text-sky-400 hover:underline">
-                Forgot Password?
-              </a>
-            </div>
-
-            <button
-              type="submit"
-              className="w-full py-2 bg-sky-300 text-white font-semibold hover:bg-sky-400 transition"
-            >
-              Login
-            </button>
-          </form>
-
-          {/* Divider */}
-          <div className="my-4 text-sm text-gray-500">Or</div>
-
-          {/* Instagram login */}
-          <button
-            type="button"
-            className="w-full flex justify-center items-center gap-2 border border-gray-300 py-2 hover:bg-gray-100"
-          >
-            <img src="/instagram.png" alt="Instagram Icon" className="w-4 text-[#A9A9A9] h-4" />
-            Continue with Instagram
-          </button>
-
-          {/* Sign up link */}
-          <div className="mt-6 text-[#A9A9A9] text-sm">
-            <span>Don't have an account? </span>
-            <Link href="/signup" className="text-sky-400 hover:underline">Signup</Link>
+            <a href="#" className="absolute right-2 top-2 text-xs text-blue-500 hover:underline">
+              Forgot Password?
+            </a>
           </div>
+
+          <button type="submit" className="bg-sky-400 text-white p-2 rounded hover:bg-sky-500 transition">
+            Login
+          </button>
+        </form>
+
+        {error && <p className="text-red-500 text-sm">{error}</p>}
+
+        {/* Divider */}
+        <div className="flex items-center gap-4 text-sm text-gray-400">
+          <hr className="flex-1 border-gray-200" />
+          <span>Or</span>
+          <hr className="flex-1 border-gray-200" />
         </div>
+
+        {/* Instagram Auth placeholder */}
+        <button className="text-sm text-gray-600">Continue with Instagram</button>
+
+
+        {/* Sign up link */}
+          <p className="text-sm text-gray-500 mt-4">
+            Don’t have an account?
+          </p>
+
+          <div className="mt-2">
+            <SignUpModal />
+          </div>
       </div>
     </div>
-  );
+  )
 }
