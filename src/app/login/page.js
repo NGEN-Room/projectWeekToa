@@ -1,8 +1,10 @@
+import Sidebar from "@/components/leftnavbar";
+import Link from "next/link"
 export default function Login() {
   return (
     // Full screen background
     <div className="flex items-center justify-center min-h-screen bg-gray-50">
-
+    <div className=""></div>
     {/* Card for the content */}
       <div className="w-full max-w-sm p-6 ">
 
@@ -62,7 +64,7 @@ export default function Login() {
           {/* Sign up link */}
           <div className="mt-6 text-[#A9A9A9] text-sm">
             <span>Don't have an account? </span>
-            <a href="#" className="text-sky-400 hover:underline">Sign Up</a>
+            <Link href="/signup" className="text-sky-400 hover:underline">Signup</Link>
           </div>
         </div>
       </div>
