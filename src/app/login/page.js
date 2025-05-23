@@ -1,3 +1,4 @@
+
 'use client'
 
 import { useState } from 'react'
@@ -65,6 +66,7 @@ export default function LoginPage() {
 
         {/* Instagram Auth placeholder */}
         <button className="text-sm text-gray-600">Continue with Instagram</button>
+
 
         {/* Sign up link */}
           <p className="text-sm text-gray-500 mt-4">

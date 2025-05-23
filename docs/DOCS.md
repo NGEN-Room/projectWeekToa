@@ -17,8 +17,12 @@ Welcome to the project! This document outlines the current tech stack and provid
 ---
 
 ### 🎨 Styling
+- **CSS Framework:** Tailwind
+  - Easy to use 
+  - Quick coding
+  - Most code in HTML rather than css
 
-
+Offical Docs: https://tailwindcss.com/docs/installation/using-vite
 ---
 
 ### 💻 Frontend
