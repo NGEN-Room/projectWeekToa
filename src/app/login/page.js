@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import supabase from '@/lib/supabaseClient'
 import { useRouter } from 'next/navigation'
+import SignUpModal from '@/components/SignUpModal'
 
 export default function LoginPage() {
   const [email, setEmail] = useState('')
@@ -16,11 +17,7 @@ export default function LoginPage() {
 
     if (error) setError(error.message)
     else router.push('/dashboard')
-  }
-
-  const handleSignup = async (e) => {
-    e.preventDefault()
-    const { error } = await supabase.auth.signUp({ email, password })
+  
 
     if (error) setError(error.message)
     else router.push('/dashboard')
@@ -45,11 +42,12 @@ export default function LoginPage() {
         <button onClick={handleLogin} className="bg-blue-500 text-white p-2">
           Log In
         </button>
-        <button onClick={handleSignup} className="bg-gray-800 text-white p-2">
-          Sign Up
-        </button>
+
         {error && <p className="text-red-500 mt-2">{error}</p>}
       </form>
+              <div className="mt-4">
+        <SignUpModal />
+      </div>
     </div>
   )
 }

@@ -36,7 +36,7 @@ export default function SignUpModal() {
       setError(signUpError.message)
     } else {
       setShowModal(false)
-      router.push('/questionnaire') // Or wherever onboarding starts
+      router.push('/ftsup') // Or wherever onboarding starts
     }
   }
 
@@ -73,13 +73,6 @@ export default function SignUpModal() {
                 placeholder="Username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                className="w-full border p-2 rounded"
-              />
-              <input
-                type="text"
-                placeholder="Your content goal"
-                value={goal}
-                onChange={(e) => setGoal(e.target.value)}
                 className="w-full border p-2 rounded"
               />
               <button className="bg-green-600 text-white w-full py-2 rounded">
